@@ -22,48 +22,37 @@ function generateOptions() {
   } 
 
   //If no character types are selected, create an alert
-if (!includeUpperCase && !includeLowerCase && !includeNumber && !includeSymbol) {
-  alert("Your password must contain at least one character type");
-  return;
-}
-  
-  var questionOptions = {
-    length: length,
-    symbols: includeSymbol,
-    numeric: includeNumber,
-    lowerCase: includeLowerCase,
-    upperCase: includeUpperCase
+  if (!includeUpperCase && !includeLowerCase && !includeNumber && !includeSymbol) {
+    alert("Your password must contain at least one character type");
+   return;
+  }
+  //Defining pool of characters to include in generated password
+  var characterOptions = [];
+
+  if (includeUpperCase) {
+    characterOptions.concat(upperCase);
+  }
+  if (includeLowerCase) {
+    characterOptions.concat(lowerCase);
+  }
+  if (includeNumber) {
+    characterOptions.concat(number);
+  }
+  if (includeSymbol) {
+    characterOptions.concat(symbol);
   }
 
-  return questionOptions;
+   //Removing quotation marks from string
+  var characterPool = characterOptions.join('');
+
+  //Generating password to appropriate length
+  finalPass = [];
+  for(var i=0; i < passLength; i++) {
+   var charSelect = Math.floor(Math.random() * characterPool.length);
+    finalPass.push(characterPool[charSelect])
+  }
 }
 
-
-//Defining pool of characters to include in generated password
-var characterOptions = [];
-
-if (includeUpperCase) {
-  characterOptions.concat(upperCase);
-}
-if (includeLowerCase) {
-  characterOptions.concat(lowerCase);
-}
-if (includeNumber) {
-  characterOptions.concat(number);
-}
-if (includeSymbol) {
-  characterOptions.concat(symbol);
-}
-
-//Removing quotation marks from string
-var characterPool = characterOptions.join('');
-
-//Generating password to appropriate length
-finalPass = [];
-for(var i=0; i < passLength; i++) {
-  var charSelect = Math.floor(Math.random() * characterPool.length);
-  finalPass.push(characterPool[charSelect])
-}
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");

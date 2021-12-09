@@ -4,6 +4,19 @@ var lowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'
 var number = ['0','1','2','3','4','5','6','7','8','9'];
 var symbol = ['~','!','@','#','$','%','^','&','*','(',')','_','+','`','-','=','/','.',','];
 
+//Prompt for character types
+var includeUpperCase = confirm("Do you want to include upper case letters?");
+var includeLowerCase = confirm("Do you want to include lower case letters?");
+var includeNumber = confirm("Do you want to include numbers?");
+var includeSymbol = confirm("Do you want to include special characters?");
+
+//If no character types are selected, create an alert
+if (!includeUpperCase && !includeLowerCase && !includeNumber && !includeSymbol) {
+  alert("Your password must contain at least one character type");
+  return;
+}
+
+
 
 function generateOptions() {
   var passLength = window.prompt("Enter password length (8-128 characters)");
@@ -14,18 +27,7 @@ function generateOptions() {
     return;
   } 
   
-  //Prompt for character types
-  var includeUpperCase = confirm("Do you want to include upper case letters?");
-  var includeLowerCase = confirm("Do you want to include lower case letters?");
-  var includeNumber = confirm("Do you want to include numbers?");
-  var includeSymbol = confirm("Do you want to include special characters?");
-
-  //If no character types are selected, create an alert
-  if (!includeUpperCase && !includeLowerCase && !includeNumber && !includeSymbol) {
-    alert("Your password must contain at least one character type");
-    return;
-  }
-
+  
   var questionOptions = {
     length: length,
     symbols: includeSymbol,
@@ -41,16 +43,16 @@ function generateOptions() {
 //Defining pool of characters to include in generated password
 var characterOptions = [];
 
-if includeUpperCase() {
+if (includeUpperCase) {
   characterOptions.concat(upperCase);
 }
-if includeLowerCase() {
+if (includeLowerCase) {
   characterOptions.concat(lowerCase);
 }
-if includeNumber() {
+if (includeNumber) {
   characterOptions.concat(number);
 }
-if includeSymbol() {
+if (includeSymbol) {
   characterOptions.concat(symbol);
 }
 

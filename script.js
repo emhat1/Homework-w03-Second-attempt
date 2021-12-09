@@ -10,23 +10,22 @@ var includeLowerCase = confirm("Do you want to include lower case letters?");
 var includeNumber = confirm("Do you want to include numbers?");
 var includeSymbol = confirm("Do you want to include special characters?");
 
-//If no character types are selected, create an alert
-if (!includeUpperCase && !includeLowerCase && !includeNumber && !includeSymbol) {
-  alert("Your password must contain at least one character type");
-  return;
-}
+var passLength = window.prompt("Enter password length (8-128 characters)");
 
 
 
 function generateOptions() {
-  var passLength = window.prompt("Enter password length (8-128 characters)");
-
-  // If unacceptable response given, create an alert
-  if (!passLength >=8 || !passLength <=128) {
-    alert("That is not an answer I can use");
+    // If unacceptable response given, create an alert
+  if (!(passLength >=8 && passLength <=128)) {
+    alert("That password length is not an answer I can use");
     return;
   } 
-  
+
+  //If no character types are selected, create an alert
+if (!includeUpperCase && !includeLowerCase && !includeNumber && !includeSymbol) {
+  alert("Your password must contain at least one character type");
+  return;
+}
   
   var questionOptions = {
     length: length,

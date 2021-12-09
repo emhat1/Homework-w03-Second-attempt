@@ -30,39 +30,38 @@ function generateOptions() {
   var characterOptions = [];
 
   if (includeUpperCase) {
-    characterOptions.concat(upperCase);
+    characterOptions=characterOptions.concat(upperCase);
   }
   if (includeLowerCase) {
-    characterOptions.concat(lowerCase);
+    characterOptions=characterOptions.concat(lowerCase);
   }
   if (includeNumber) {
-    characterOptions.concat(number);
+    characterOptions=characterOptions.concat(number);
   }
   if (includeSymbol) {
-    characterOptions.concat(symbol);
+    characterOptions=characterOptions.concat(symbol);
   }
 
    //Removing quotation marks from string
   var characterPool = characterOptions.join('');
 
   //Generating password to appropriate length
-  finalPass = [];
+  nearlyFinalPass = [];
   for(var i=0; i < passLength; i++) {
    var charSelect = Math.floor(Math.random() * characterPool.length);
-    finalPass.push(characterPool[charSelect])
+    nearlyFinalPass.push(characterPool[charSelect])
   }
+
+  //Remove commas from password output
+  var finalPass = nearlyFinalPass.join('');
+
   // Write password to the #password input
-  function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.textContent = password;
-  }
+    var passwordText = document.querySelector("#password");
+    passwordText.innerHTML = finalPass;
 }
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-
 
 
 // Add event listener to button
